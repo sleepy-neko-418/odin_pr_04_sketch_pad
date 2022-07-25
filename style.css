@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 96px;
+}
+
+.side-bar,
+.canvas {
+  height: 640px;
+  flex-shrink: 0;
+  border: lightslategray solid 2px;
+}
+
+.side-bar {
+  width: 240px;
+  border-radius: 8px;
+}
+
+.canvas {
+  width: 800px;
+}
