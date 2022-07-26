@@ -1,3 +1,25 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: lightslategray;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.heading {
+  text-align: center;
+}
+
+h1 {
+  color: lightslategray;
+  font-size: 64px;
+  margin-bottom: 96px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -7,16 +29,66 @@
 
 .side-bar,
 .canvas {
-  height: 640px;
   flex-shrink: 0;
   border: lightslategray solid 2px;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-bar {
   width: 240px;
+  height: 480px;
   border-radius: 8px;
+  align-items: center;
+}
+
+.side-bar-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.side-bar button {
+  border: solid 1px lightslategray;
+  border-radius: 4px;
+  color: antiquewhite;
+  font-weight: bold;
+  background-color: lightslategray;
+  width: 96px;
+  height: 48px;
+}
+
+.side-bar-input {
+  text-align: center;
+}
+
+.side-bar label {
+  display: block;
+  margin-bottom: 8px;
 }
 
 .canvas {
-  width: 800px;
+  width: 1000px;
+  height: 800px;
+  padding: 0;
+  gap: 0;
+}
+
+.canvas-row {
+  flex: 1;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.canvas-cell {
+  flex: 1;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
 }

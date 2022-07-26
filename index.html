@@ -10,8 +10,30 @@
 </head>
 
 <body>
+  <div class="heading">
+    <h1>Sketch Pad</h1>
+  </div>
   <div class="container">
-    <div class="side-bar"></div>
+    <div class="side-bar">
+      <h3>Tools Panel</h3>
+      <div class="side-bar-tools">
+        <div class="side-bar-input">
+          <label for="grid-size">Grid Size</label>
+          <select name="grid-size" id="grid-size-input">
+            <option value="36-48">36 X 48</option>
+            <option value="48-64" selected="true">48 X 64</option>
+            <option value="96-128">96 X 128</option>
+          </select>
+        </div>
+        <div class="side-bar-input">
+          <label for="pencil-color">Pencil Color</label>
+          <input type="color" name="pencil-color" id="pencil-color-input">
+        </div>
+        <button id="pencil-button">Pencil 🖌</button>
+        <button id="eraser-button">Eraser 🧽</button>
+        <button id="clear-button">Clear Canvas</button>
+      </div>
+    </div>
     <div class="canvas"></div>
   </div>
   <script src="./index.js" defer></script>
