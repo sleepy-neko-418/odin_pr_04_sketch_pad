@@ -16,8 +16,8 @@ body {
 
 h1 {
   color: lightslategray;
-  font-size: 64px;
-  margin-bottom: 96px;
+  font-size: 48px;
+  margin-bottom: 64px;
 }
 
 .container {
@@ -29,7 +29,7 @@ h1 {
 
 .side-bar,
 .canvas {
-  height: 800px;
+  height: 600px;
   flex-shrink: 0;
   border: lightslategray solid 2px;
   display: flex;
@@ -59,6 +59,7 @@ h1 {
   background-color: lightslategray;
   width: 96px;
   height: 48px;
+  padding: 8px;
 }
 
 .side-bar-input {
@@ -71,7 +72,7 @@ h1 {
 }
 
 .canvas {
-  width: 1000px;
+  width: 800px;
   padding: 0;
   gap: 0;
 }
