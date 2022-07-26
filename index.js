@@ -2,11 +2,11 @@
   let globalStates = {
     canvasRow: 48,
     canvasCol: 64,
-    isDrawing: false,
+    isPressing: false,
+    drawingMode: 'pencil',
   };
 
   function renderCanvas() {
-    let body = document.querySelector("body");
     let canvas = document.querySelector("div.canvas");
 
     // Clear canvas states
@@ -22,7 +22,8 @@
         let cell = document.createElement("div");
         cell.setAttribute("class", "canvas-cell");
         cell.setAttribute("id", `canvas-cell-${row}-${col}`);
-        cell.addEventListener("mouseover", changeColor);
+        cell.addEventListener("mouseover", changeCellColor);
+        cell.addEventListener("click", fillCellsColor);
 
         rowDiv.appendChild(cell);
       }
@@ -30,8 +31,6 @@
       canvas.appendChild(rowDiv);
     }
 
-    body.addEventListener("mousedown", () => globalStates.isDrawing = true);
-    body.addEventListener("mouseup", () => globalStates.isDrawing = false);
   }
 
   function initTools() {
@@ -39,16 +38,26 @@
     gridSizeInput.addEventListener('change', changeGridSize)
 
     let pencilColorInput = document.querySelector("#pencil-color-input");
+    globalStates.penColor = pencilColorInput.value
     pencilColorInput.addEventListener('change', () => globalStates.penColor = pencilColorInput.value);
 
     let pencilButton = document.querySelector("#pencil-button");
-    pencilButton.addEventListener('click', () => globalStates.penColor = pencilColorInput.value);
+    pencilButton.addEventListener('click', changePencilMode);
 
     let eraserButton = document.querySelector("#eraser-button");
-    eraserButton.addEventListener('click', () => globalStates.penColor = "white");
+    eraserButton.addEventListener('click', changeEraseMode);
+
+    let fillButton = document.querySelector("#fill-button");
+    fillButton.addEventListener('click', changeFillMode)
 
     let clearButton = document.querySelector("#clear-button");
     clearButton.addEventListener('click', clearCanvas);
+
+    let body = document.querySelector("body");
+    body.addEventListener("mousedown", () => globalStates.isPressing = true);
+    body.addEventListener("mouseup", () => globalStates.isPressing = false);
+    changeGridSize();
+    changePencilMode();
   } 
 
   function changeGridSize() {
@@ -58,18 +67,44 @@
     renderCanvas();
   }
 
-  function changeColor(e) {
+  function changeCellColor(e) {
     let target = e.target;
-    if (globalStates.isDrawing) {
-      target.style.background = globalStates.penColor;
+    if (globalStates.isPressing) {
+      if (globalStates.drawingMode === "pencil") {
+        target.style.background = globalStates.penColor;
+      } else if (globalStates.drawingMode === "erase") {
+        target.style.background = "white";
+      }
     }
+  }
+
+  function fillCellsColor(e) {
+    let target = e.target;
+  }
+
+  function changePencilMode() {
+    globalStates.drawingMode = 'pencil';
+    let pencilColorInput = document.querySelector("#pencil-color-input");
+    globalStates.penColor = pencilColorInput.value;
+    let canvas = document.querySelector("div.canvas"); 
+    canvas.style.cursor = "default";
+  }
+
+  function changeEraseMode() {
+    globalStates.drawingMode = 'erase';
+    let canvas = document.querySelector("div.canvas"); 
+    canvas.style.cursor = "not-allowed";
+  }
+
+  function changeFillMode() {
+    globalStates.drawingMode = 'fill';
+    let canvas = document.querySelector("div.canvas"); 
+    canvas.style.cursor = "cell";
   }
 
   function clearCanvas() {
     let cells = document.querySelectorAll(".canvas-cell");
     cells.forEach((e) => e.style.background = "white");
   }
-
   initTools();
-  renderCanvas();
 })();
