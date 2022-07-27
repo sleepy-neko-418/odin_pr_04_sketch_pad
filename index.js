@@ -159,7 +159,7 @@
 
   function clearCanvas() {
     let cells = document.querySelectorAll(".canvas-cell");
-    cells.forEach((e) => e.style.backgroundColor = "white");
+    cells.forEach((e) => e.style.backgroundColor = globalStates.erasedColor);
   }
 
   initPage();
